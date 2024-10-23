@@ -8,6 +8,7 @@
   <modules>
     <module>springmvc-01-servlet</module>
     <module>springmvc-02-hello</module>
+      <module>springmvc-03-hello-annotation</module>
   </modules>
   <version>1.0-SNAPSHOT</version>
   <name>springmvc-study Maven Webapp</name>
@@ -43,5 +44,25 @@
 
   <build>
     <finalName>springmvc-study</finalName>
+    <!-- 处理 Maven 资源过滤的问题 -->
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
   </build>
+
 </project>

@@ -5,24 +5,22 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
-  <!-- 1.注册 DispatcherServlet -->
-  <!-- 这是 SpringMVC 的个性，请求分发器、前端控制器-->
+  <!-- 1.注册servlet -->
   <servlet>
-    <servlet-name>springmvc</servlet-name>
+    <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <!-- 关联一个 springmvc 的配置文件:【servlet-name】-servlet.xml -->
+    <!-- 通过初始化参数指定 SpringMVC 配置文件的位置，进行关联 -->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:springmvc-servlet.xml</param-value>
     </init-param>
-    <!-- 启动级别-1 -->
+    <!-- 启动顺序，数字越小，启动越早 -->
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <!-- / 匹配所有的请求；（不包括.jsp）-->
-  <!-- /* 匹配所有的请求；（包括.jsp）-->
+  <!-- 所有请求都会被 Springmvc 拦截 -->
   <servlet-mapping>
-    <servlet-name>springmvc</servlet-name>
+    <servlet-name>SpringMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
