@@ -2,16 +2,14 @@ package com.springmvc.service;
 
 import com.springmvc.dao.BookMapper;
 import com.springmvc.pojo.Books;
+import lombok.Setter;
 
 import java.util.List;
 
+@Setter
 public class BookServiceImpl implements BookService {
     // 调用 Dao 层的操作，设置一个 set 接口，方便 Spring 管理
     private BookMapper bookMapper;
-
-    public void setBookMapper(BookMapper bookMapper) {
-        this.bookMapper = bookMapper;
-    }
 
     @Override
     public int insert(Books book) {
