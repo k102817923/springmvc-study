@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+// 代表这个类会被 Spring 接管
+// 被这个注解的类中的所有方法，如果返回值是 String，并且有具体页面可以跳转，那么就会被视图解析器解析
 @Controller
 public class RestFulController {
     // 映射访问路径

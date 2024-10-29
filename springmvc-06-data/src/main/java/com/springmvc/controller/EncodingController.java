@@ -9,6 +9,7 @@ public class EncodingController {
     @RequestMapping("/encoding/test")
     public String test(Model model, String name) {
         model.addAttribute("msg", name);
+        System.out.println(name);
         return "hello";
     }
 }

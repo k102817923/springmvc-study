@@ -13,6 +13,9 @@
       <module>springmvc-05-result</module>
       <module>springmvc-06-data</module>
       <module>springmvc-07-ssm</module>
+    <module>springmvc-08-json</module>
+    <module>springmvc-09-ajax</module>
+    <module>springmvc-10-interceptor</module>
   </modules>
   <version>1.0-SNAPSHOT</version>
   <name>springmvc-study Maven Webapp</name>
@@ -82,6 +85,18 @@
       <artifactId>lombok</artifactId>
       <version>1.18.24</version>
       <scope>provided</scope>
+    </dependency>
+    <!-- Jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.18.0</version>
+    </dependency>
+    <!-- fastjson -->
+    <dependency>
+      <groupId>com.alibaba.fastjson2</groupId>
+      <artifactId>fastjson2</artifactId>
+      <version>2.0.53</version>
     </dependency>
   </dependencies>
 
