@@ -5,11 +5,6 @@
 
 <configuration>
 
-    <properties resource="db.properties">
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-    </properties>
-
     <typeAliases>
         <package name="com.springmvc.pojo"/>
     </typeAliases>

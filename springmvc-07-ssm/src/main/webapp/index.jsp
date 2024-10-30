@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <title>首页</title>
     <style>
@@ -27,5 +26,4 @@
         <a href="${pageContext.request.contextPath}/book/queryAll">点击进入列表页</a>
     </h3>
 </body>
-
 </html>

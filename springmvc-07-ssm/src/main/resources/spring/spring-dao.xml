@@ -9,7 +9,7 @@
 
     <!-- 配置整合 Mybatis -->
     <!-- 1.关联数据库文件 -->
-    <context:property-placeholder location="classpath:database.properties"/>
+    <context:property-placeholder location="classpath:db.properties"/>
 
     <!-- 2.数据库连接池 -->
     <!--
@@ -42,27 +42,13 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
-    <!-- 4.配置扫描 Dao 接口包，动态实现 Dao 接口注入到 Spring 容器中 -->
+    <!-- 4.配置 Dao 接口扫描包，动态实现 Dao 接口注入到 Spring 容器中 -->
     <!-- 解释：https://www.cnblogs.com/jpfss/p/7799806.html -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 注入 SqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描 Dao 接口包 -->
         <property name="basePackage" value="com.springmvc.dao"/>
-    </bean>
-
-    <!-- 扫描 Service 相关的 Bean -->
-    <context:component-scan base-package="com.springmvc.service"/>
-
-    <!-- BookServiceImpl 注入到 IOC 容器中 -->
-    <bean id="bookServiceImpl" class="com.springmvc.service.BookServiceImpl">
-        <property name="bookMapper" ref="bookMapper"/>
-    </bean>
-
-    <!-- 配置事务管理器 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <!-- 注入数据库连接池 -->
-        <property name="dataSource" ref="dataSource"/>
     </bean>
 
 </beans>

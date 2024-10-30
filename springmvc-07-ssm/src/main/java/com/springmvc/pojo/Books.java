@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Books {
-    private int bookId;
+
+    private int bookID;
     private String bookName;
     private int bookCounts;
     private String detail;
+
 }

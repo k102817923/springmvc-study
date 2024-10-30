@@ -40,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="book" items="${requestScope.get('list')}">
+                <c:forEach var="book" items="${requestScope.get('books')}">
                     <tr>
                         <td>${book.getBookID()}</td>
                         <td>${book.getBookName()}</td>
