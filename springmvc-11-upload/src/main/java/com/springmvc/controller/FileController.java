@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 
 @Controller
@@ -47,6 +49,56 @@ public class FileController {
         }
 
         return "redirect:/index.jsp";
+    }
+
+    @RequestMapping("/upload/v2")
+    public String upload2(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest request) throws IOException {
+        // 上传路径保存设置
+        String path = request.getSession().getServletContext().getRealPath("/upload");
+        // 如果路径不存在，创建一个
+        File realPath = new File(path);
+        if (!realPath.exists()) {
+            realPath.mkdirs();
+        }
+
+        System.out.println("上传文件保存地址：" + realPath);
+
+        // 通过 CommonsMultipartFile 的方法直接写文件
+        file.transferTo(new File(realPath + "/" + file.getOriginalFilename()));
+        return "redirect:/index.jsp";
+    }
+
+    @RequestMapping("/download")
+    public String download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 要下载的图片地址
+        String path = request.getSession().getServletContext().getRealPath("/upload");
+        String fileName = "基础语法.jpg";
+        File file = new File(path, fileName);
+
+        // 确保文件存在
+        if (!file.exists()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return null;
+        }
+
+        // 设置 response 响应头
+        response.reset();
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, "UTF-8"));
+
+        // 建议使用 try-with-resources 来自动关闭流，或者至少在 finally 块中关闭它们，以避免潜在的资源泄漏
+        try (InputStream input = Files.newInputStream(file.toPath());
+             OutputStream out = response.getOutputStream()) {
+
+            byte[] buff = new byte[1024];
+            int index;
+            while ((index = input.read(buff)) != -1) {
+                out.write(buff, 0, index);
+            }
+        }
+
+        return null;
     }
 
 }
